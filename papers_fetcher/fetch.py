@@ -2,7 +2,7 @@ from typing import List, Dict, Optional
 from .utils import is_non_academic_affiliation, extract_company_names
 import requests
 import logging
-from lxml import etree
+import lxml.etree as etree
 
 PUBMED_ESEARCH_URL = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
 PUBMED_EFETCH_URL = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
