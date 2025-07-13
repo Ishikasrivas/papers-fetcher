@@ -22,7 +22,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.x' # Specify your Python version here, e.g., '3.9' or '3.10'
+        python-version: '3.13.5' 
 
     - name: Install dependencies
       run: | # Use a pipe `|` for multi-line commands
@@ -30,12 +30,10 @@ jobs:
         pip install poetry # Assuming you use poetry based on pyproject.toml
         poetry install # Installs dependencies from pyproject.toml
 
-    - name: Run tests # Example: If you have tests, you can run them here
-      run: poetry run pytest # Or your preferred test command, e.g., python -m unittest
+    - name: Run tests 
+      run: poetry run pytest 
 
-    # Add more steps here for publishing, e.g., building a package and uploading it
-    # For publishing to PyPI, you might add steps using actions like pypa/gh-action-pypi-publish
-    # - name: Build and publish
+    
     #   if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags') # Only run on tag pushes
     #   run: | # Commands to build and publish your package
     #     poetry build
