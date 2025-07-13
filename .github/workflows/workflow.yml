@@ -1,0 +1,42 @@
+
+name: Python CI/CD
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x' # Specify your Python version here, e.g., '3.9' or '3.10'
+
+    - name: Install dependencies
+      run: | # Use a pipe `|` for multi-line commands
+        python -m pip install --upgrade pip
+        pip install poetry # Assuming you use poetry based on pyproject.toml
+        poetry install # Installs dependencies from pyproject.toml
+
+    - name: Run tests # Example: If you have tests, you can run them here
+      run: poetry run pytest # Or your preferred test command, e.g., python -m unittest
+
+    # Add more steps here for publishing, e.g., building a package and uploading it
+    # For publishing to PyPI, you might add steps using actions like pypa/gh-action-pypi-publish
+    # - name: Build and publish
+    #   if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags') # Only run on tag pushes
+    #   run: | # Commands to build and publish your package
+    #     poetry build
+    #     poetry publish --username __token__ --password ${{ secrets.PYPI_API_TOKEN }} 
